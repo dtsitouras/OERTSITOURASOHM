@@ -1,42 +1,33 @@
-<!DOCTYPE html>
-<html lang="el">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Νόμος του Ohm - Διαδραστικό OER</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>Νόμος του Ohm: Αρχές και Εφαρμογές</h1>
-        <p>Δημιουργός: Δημήτρης Τσίτουρας</p>
-    </header>
+// Function to calculate current
+function calculateCurrent() {
+    // Get the values of voltage and resistance from the sliders
+    const voltage = document.getElementById('voltage').value;
+    const resistance = document.getElementById('resistance').value;
 
-    <main>
-        <section id="intro">
-            <h2>Εισαγωγή</h2>
-            <p>Ο Νόμος του Ohm περιγράφει τη σχέση μεταξύ τάσης, έντασης ρεύματος και αντίστασης σε ένα ηλεκτρικό κύκλωμα.</p>
-        </section>
+    // Calculate current using Ohm's Law: I = V / R
+    const current = (voltage / resistance).toFixed(2);
 
-        <section id="simulation">
-            <h2>Διαδραστική Προσομοίωση</h2>
-            <label for="voltage">Τάση (V):</label>
-            <input type="range" id="voltage" min="0" max="240" value="120">
-            <label for="resistance">Αντίσταση (Ω):</label>
-            <input type="range" id="resistance" min="1" max="100" value="50">
-            <p>Ένταση Ρεύματος (I): <span id="current">--</span> A</p>
-            <button onclick="calculateCurrent()">Υπολογισμός</button>
-        </section>
+    // Update the current display
+    document.getElementById('current').textContent = current;
+}
 
-        <section id="quiz">
-            <h2>Διαδραστικό Quiz</h2>
-            <p>Ερώτηση: Αν η τάση σε ένα κύκλωμα είναι 120V και η αντίσταση είναι 60Ω, ποια είναι η ένταση του ρεύματος;</p>
-            <input type="text" id="answer" placeholder="Απάντηση σε A">
-            <button onclick="checkAnswer()">Υποβολή</button>
-            <p id="feedback"></p>
-        </section>
-    </main>
+// Function to check the quiz answer
+function checkAnswer() {
+    // Get the answer input by the user
+    const userAnswer = document.getElementById('answer').value;
 
-    <script src="script.js"></script>
-</body>
-</html>
+    // Correct answer (based on the question in the HTML)
+    const correctAnswer = (120 / 60).toFixed(2);
+
+    // Get the feedback element
+    const feedback = document.getElementById('feedback');
+
+    // Check if the user's answer matches the correct answer
+    if (userAnswer === correctAnswer) {
+        feedback.textContent = 'Σωστό! Καλή δουλειά!';
+        feedback.style.color = 'green';
+    } else {
+        feedback.textContent = `Λάθος. Η σωστή απάντηση είναι ${correctAnswer} A.`;
+        feedback.style.color = 'red';
+    }
+}
